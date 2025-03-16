@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete Financial Calculator Suite with EMI, Investment, Salary, and Age Calculators">
+    <meta name="keywords" content="emi calculator, investment calculator, salary calculator, age calculator, financial planning">
+    <title>Finance Master | Complete Financial Calculator Suite</title>
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Finance Master",
+        "applicationCategory": "Finance",
+        "operatingSystem": "Web",
+        "description": "Professional financial calculators for EMI calculations, investment planning, salary components, and age calculation",
+        "url": "https://yourdomain.com",
+        "screenshot": "screenshot.jpg"
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Finance Master</h1>
+        <div class="ad-top">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </header>
+
+    <nav class="tabs">
+        <button class="tab active" data-tab="emi">EMI</button>
+        <button class="tab" data-tab="investment">Investment</button>
+        <button class="tab" data-tab="salary">Salary</button>
+        <button class="tab" data-tab="age">Age</button>
+    </nav>
+
+    <main class="container">
+        <!-- EMI Calculator -->
+        <div id="emi" class="tab-content active">
+            <div class="calculator">
+                <div class="input-group">
+                    <input type="number" id="loanAmount" placeholder="Loan Amount (₹)">
+                    <input type="number" id="interestRate" step="0.01" placeholder="Interest Rate (%)">
+                    <input type="number" id="loanTenure" placeholder="Tenure (Years)">
+                </div>
+                <button class="calculate-btn" onclick="calculateEMI()">Calculate</button>
+                <div class="results">
+                    <div class="result-card">
+                        <p>Monthly EMI: <span id="monthlyEMI">₹0</span></p>
+                        <p>Total Interest: <span id="totalInterest">₹0</span></p>
+                        <p>Total Payment: <span id="totalPayment">₹0</span></p>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Principal</th>
+                                    <th>Interest</th>
+                                    <th>Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody id="emiBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Calculator -->
+        <div id="investment" class="tab-content">
+            <div class="calculator">
+                <div class="investment-controls">
+                    <select id="investmentType" onchange="toggleSIP()">
+                        <option value="lump">Lump Sum</option>
+                        <option value="sip">Monthly SIP</option>
+                    </select>
+                    <div class="input-group">
+                        <input type="number" id="principal" placeholder="Initial Investment (₹)">
+                        <input type="number" id="monthly" class="sip-input" placeholder="Monthly Investment (₹)">
+                    </div>
+                    <div class="range-controls">
+                        <div class="range-group">
+                            <label>Duration: <span id="yearsValue">10</span> years</label>
+                            <input type="range" id="years" min="1" max="30" value="10">
+                            <input type="number" id="yearsInput" value="10">
+                        </div>
+                        <div class="range-group">
+                            <label>Returns: <span id="returnsValue">12</span>%</label>
+                            <input type="range" id="returns" min="1" max="30" value="12">
+                            <input type="number" id="returnsInput" value="12">
+                        </div>
+                    </div>
+                </div>
+                <button class="calculate-btn" onclick="calculateInvestment()">Calculate</button>
+                <div class="investment-results">
+                    <div class="result-grid">
+                        <div class="result-card">
+                            <p class="result-title">Investment Period</p>
+                            <p class="result-value" id="investmentYears">10 Years</p>
+                        </div>
+                        <div class="result-card">
+                            <p class="result-title">Total Invested</p>
+                            <p class="result-value" id="totalInvested">₹0</p>
+                        </div>
+                        <div class="result-card highlight">
+                            <p class="result-title">Future Value</p>
+                            <p class="result-value" id="finalValue">₹0</p>
+                        </div>
+                    </div>
+                    <canvas id="investmentChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Salary Calculator -->
+        <div id="salary" class="tab-content">
+            <div class="calculator">
+                <div class="input-group">
+                    <input type="number" id="basicSalary" placeholder="Basic Salary (₹)">
+                    <input type="number" id="gradePay" placeholder="Grade Pay (₹)">
+                    <input type="number" id="daPercent" value="38" placeholder="DA (%)">
+                    <input type="number" id="hraPercent" value="24" placeholder="HRA (%)">
+                </div>
+                <button class="calculate-btn" onclick="calculateSalary()">Calculate</button>
+                <div class="salary-results">
+                    <table>
+                        <tr><th>Component</th><th>Amount</th></tr>
+                        <tr><td>Basic Pay</td><td id="basicResult">₹0</td></tr>
+                        <tr><td>Grade Pay</td><td id="gradeResult">₹0</td></tr>
+                        <tr><td>DA</td><td id="daResult">₹0</td></tr>
+                        <tr><td>HRA</td><td id="hraResult">₹0</td></tr>
+                        <tr class="total"><td>Total Salary</td><td id="totalSalary">₹0</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Age Calculator -->
+        <div id="age" class="tab-content">
+            <div class="calculator">
+                <input type="date" id="dob">
+                <button class="calculate-btn" onclick="calculateAge()">Calculate</button>
+                <div class="age-result">
+                    <p id="ageResult">Enter your date of birth</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="ad-bottom">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="0987654321"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+        <div class="footer-links">
+            <a href="/about">About</a> | 
+            <a href="/privacy">Privacy</a> | 
+            <a href="/terms">Terms</a>
+        </div>
+        <p>© 2023 Finance Master. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</body>
+</html>
