@@ -4,6 +4,7 @@
     --accent: #27ae60;
     --background: #f8f9fa;
     --text: #2d3436;
+    --mobile-breakpoint: 768px;
 }
 
 * {
@@ -12,27 +13,40 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 16px;
+}
+
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
     background: var(--background);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Header Styles */
 header {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     background: var(--primary);
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
+/* Ad Containers */
 .ad-top, .ad-bottom {
-    margin: 1rem auto;
+    margin: 0 auto;
     padding: 1rem;
     text-align: center;
     max-width: 1200px;
 }
 
+/* Navigation Tabs */
 .tabs {
     display: flex;
     flex-wrap: wrap;
@@ -43,42 +57,49 @@ header {
 }
 
 .tab {
-    padding: 1rem 2rem;
+    padding: 1rem;
     border: none;
     border-radius: 5px;
     background: var(--secondary);
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
 .tab.active {
     background: var(--accent);
 }
 
+/* Main Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
+    flex: 1;
 }
 
+/* Calculator Content */
 .tab-content {
     display: none;
     background: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    animation: fadeIn 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 1rem 0;
 }
 
 .tab-content.active {
     display: block;
 }
 
+/* Input Groups */
 .input-group {
     display: grid;
     gap: 1rem;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 input, select {
@@ -87,133 +108,160 @@ input, select {
     border-radius: 8px;
     width: 100%;
     font-size: 1rem;
+    -webkit-appearance: none;
 }
 
+/* Buttons */
 button {
     background: var(--secondary);
     color: white;
-    padding: 1rem 2rem;
+    padding: 1rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
     font-size: 1rem;
     font-weight: bold;
+    width: 100%;
 }
 
 button:hover {
     opacity: 0.9;
 }
 
+/* Results Section */
 .results {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 .result-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
 }
 
 .result-card {
-    padding: 1.5rem;
+    padding: 1rem;
     background: #f8f9fa;
-    border-radius: 10px;
+    border-radius: 8px;
     text-align: center;
 }
 
-.result-card.highlight {
-    background: var(--accent);
-    color: white;
-}
-
-.result-title {
-    color: #666;
-    margin-bottom: 0.5rem;
-}
-
-.result-value {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
+/* Tables */
 .table-container {
     overflow-x: auto;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     background: white;
+    min-width: 600px;
 }
 
 th, td {
-    padding: 1rem;
+    padding: 0.75rem;
     text-align: center;
     border: 1px solid #ddd;
+    font-size: 0.9rem;
 }
 
-th {
-    background: var(--primary);
-    color: white;
-}
-
+/* Range Controls */
 .range-controls {
     display: grid;
-    gap: 2rem;
-    margin: 2rem 0;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
 }
 
 .range-group {
     background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 10px;
-}
-
-.range-group label {
-    display: block;
-    margin-bottom: 1rem;
-    font-weight: 500;
+    padding: 1rem;
+    border-radius: 8px;
 }
 
 input[type="range"] {
     width: 100%;
-    height: 8px;
+    height: 6px;
     background: #ddd;
     border-radius: 5px;
     margin: 0.5rem 0;
 }
 
-input[type="number"] {
-    width: 100%;
-    padding: 0.8rem;
-}
-
+/* Footer */
 footer {
     text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     background: var(--primary);
     color: white;
-    margin-top: 2rem;
+    margin-top: auto;
 }
 
+/* Mobile Styles */
 @media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
     .container {
-        padding: 1rem;
+        padding: 0.5rem;
     }
-    
+
     .tab {
-        width: 100%;
-        text-align: center;
+        flex: 1 1 100%;
+        font-size: 1rem;
+        padding: 0.75rem;
     }
-    
+
+    .tab-content {
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+
+    input, select {
+        padding: 0.75rem;
+    }
+
     .result-grid {
         grid-template-columns: 1fr;
     }
+
+    table {
+        min-width: 100%;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+
+    .range-controls {
+        gap: 1rem;
+    }
 }
 
+/* Desktop Enhancements */
+@media (min-width: 769px) {
+    .input-group {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    button {
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .result-card {
+        padding: 2rem;
+    }
+
+    table {
+        font-size: 1rem;
+    }
+}
+
+/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
