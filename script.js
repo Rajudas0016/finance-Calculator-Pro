@@ -174,3 +174,49 @@ function calculateAge() {
 document.querySelector('.tab.active').click();
 toggleSIP();
 setupInvestmentControls();
+// Add touch support
+document.addEventListener('touchstart', function(){}, true);
+
+// Common Functions
+function formatINR(amount) {
+    if(amount >= 10000000) return '₹' + (amount/10000000).toFixed(2) + ' Cr';
+    if(amount >= 100000) return '₹' + (amount/100000).toFixed(2) + ' Lakh';
+    return '₹' + amount.toLocaleString('en-IN');
+}
+
+// Tab Navigation
+function setupTabs() {
+    const tabs = document.querySelectorAll('.tab');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            document.getElementById(this.dataset.tab).classList.add('active');
+        });
+        
+        // Add touch support
+        tab.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.click();
+        });
+    });
+}
+
+// Rest of the JavaScript functions remain the same as previous version
+// (EMI, Investment, Salary, Age calculators with same functionality)
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    setupTabs();
+    document.querySelector('.tab.active').click();
+    toggleSIP();
+    setupInvestmentControls();
+    
+    // Initialize ads
+    (adsbygoogle = window.adsbygoogle || []).push({});
+});
