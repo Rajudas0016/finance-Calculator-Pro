@@ -58,7 +58,6 @@ function toggleSIP() {
 }
 
 function setupInvestmentControls() {
-    // Sync range and number inputs
     const syncInputs = (rangeId, inputId) => {
         const range = document.getElementById(rangeId);
         const input = document.getElementById(inputId);
